@@ -9,6 +9,11 @@ WORKDIR /app
 
 COPY --chown=node:node . ./
 
+# Change directory ownership to the node user
+USER root
+RUN chown -R node:node /app
+USER node
+
 RUN yarn --network-timeout=100000
 
 EXPOSE 3000
